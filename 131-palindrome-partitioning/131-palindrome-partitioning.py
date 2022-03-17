@@ -2,7 +2,7 @@ class Solution:
     def partition(self, s: str) -> List[List[str]]:
         # def isPalindrome(start_index,end_index,s):
         #     item = s[start_index:end_index]
-        #     if item == "":return False
+        #     # if item == "":return False
         #     left = 0
         #     right = len(item) - 1
         #     while left < right:
@@ -12,6 +12,8 @@ class Solution:
         #         else:
         #             return False
         #     return True
+        
+        
         def isPalindrome(i: int, j: int,s):
             if i >= j:
                 return True
