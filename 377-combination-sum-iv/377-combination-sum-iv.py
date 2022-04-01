@@ -10,6 +10,5 @@ class Solution:
             for item in nums:
                 if j-item < 0:continue
                 dp[j] += dp[j-item]
-            print(dp)
         return dp[-1]
         
