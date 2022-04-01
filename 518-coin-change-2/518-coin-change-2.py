@@ -5,6 +5,5 @@ class Solution:
         for item in coins:
             for j in range(item,amount+1):
                 dp[j] += dp[j-item]
-            print(dp)
         return dp[-1]
         
