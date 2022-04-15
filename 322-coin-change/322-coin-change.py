@@ -4,7 +4,7 @@ class Solution:
         dp = [ float("inf") for i in range(amount+1)]
         dp[0] = 0
         for i in coins:
-            for j in range(i,amount+1):
+            for j in range(i,len(dp)):
                 dp[j] = min(dp[j-i]+1,dp[j])
         if dp[-1] == float("inf"):return -1
         # return 3
