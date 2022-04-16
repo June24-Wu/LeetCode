@@ -18,14 +18,14 @@ class Solution:
             #     return node.val
             left = dfs(node.left)
             right = dfs(node.right)
-            print(left,right,node.val)
+            # print(left,right,node.val)
             val = node.val + left + right
             if val not in final.keys():
                 final[val] = 0
             final[val] += 1
             return val
         dfs(root)
-        print(final)
+        # print(final)
         maxFrequency = 0
         for i in final.keys():
             maxFrequency = max(final [i],maxFrequency)
