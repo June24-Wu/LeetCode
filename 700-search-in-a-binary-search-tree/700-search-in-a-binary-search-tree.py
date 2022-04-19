@@ -7,13 +7,14 @@
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         
-        def dfs(node,val):
-            if node == None or node.val == val :return node
-            if val > node.val:
-                return dfs(node.right,val)
+        def dfs(node):
+            if node == None:return None
+            elif node.val > val:
+                return dfs(node.left)
+            elif node.val < val:
+                return dfs(node.right)
             else:
-                return dfs(node.left,val)
-            return None
-        return dfs(root,val)
+                return node
+        return dfs(root)
         
         
