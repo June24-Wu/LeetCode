@@ -6,31 +6,36 @@
 #         self.right = right
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
-        def find_successor(node):
-            while node.left != None:
-                node = node.left
-            return node
-                
+        
+        
         def dfs(node):
-            if node == None:return node
-            elif key > node.val:
-                node.right =  dfs(node.right)
-            elif key < node.val:
-                node.left =  dfs(node.left)
+            if node == None:
+                return
+            elif node.val < key:
+                node.right = dfs(node.right)
+            elif node.val > key:
+                node.left = dfs(node.left)
             else:
                 if node.left == None and node.right == None:
-                    print(node.val)
-                    node = None
+                    return None
                 elif node.left == None:
-                    node = node.right
+                    return node.right
                 elif node.right == None:
-                    node = node.left
+                    return node.left
                 else:
-                    d_node = find_successor(node.right)
-                    node.val, d_node.val = d_node.val,node.val
+                    p = node.right
+                    while p.left != None:
+                        p = p.left
+                    node.val , p.val = p.val , node.val
                     node.right = dfs(node.right)
             return node
         return dfs(root)
+        
+        
+        
+        
+        
+        
                     
                 
         
