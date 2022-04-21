@@ -28,14 +28,12 @@ class Solution:
     def replaceWords(self, dictionary: List[str], sentence: str) -> str:
         trie = Trie()
         dictionary.sort()
-        print(dictionary)
         for i in range(len(dictionary)):
             word = dictionary[i]
             if trie.findPrefix(word) != None:
                 dictionary[i] = trie.findPrefix(word)
             else:
                 trie.add(word)
-        print(trie.findPrefix("cattle"))
         dictionary = list(set(dictionary))
         sentence = sentence.split(" ")
         for i in range(len(sentence)):
