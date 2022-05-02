@@ -9,7 +9,6 @@ class Solution:
             for start , end , cost in flights:
                 dp[end] = min(dp[end],temp[start]+cost)
             res = min(res,dp[dst])
-            print(dp)
         if res == float("inf"):
             return -1
         return res
