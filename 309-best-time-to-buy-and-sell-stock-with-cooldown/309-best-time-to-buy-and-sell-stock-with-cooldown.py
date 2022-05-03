@@ -8,7 +8,7 @@ class Solution:
             dp[0] = max(temp[0],temp[2]-prices[i])
             dp[1] = temp[0] + prices[i]
             dp[2] = max(temp[2],temp[1])
-            print(dp)
+            # print(dp)
         return max(dp)
         
         
