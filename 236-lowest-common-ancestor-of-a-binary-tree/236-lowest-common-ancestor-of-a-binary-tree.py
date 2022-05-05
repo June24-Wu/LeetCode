@@ -7,12 +7,15 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if root == p or root == q or root == None:return root
-        left = self.lowestCommonAncestor(root.left,p,q)
-        right = self.lowestCommonAncestor(root.right,p,q)
-        if left == None:
-            return right
-        if right == None:
-            return left
-        return root
+        
+        def dfs(node):
+            if node == p or node == q or node == None: return node
+            node.left = dfs(node.left)
+            node.right = dfs(node.right)
+            if node.left == None:
+                return node.right
+            if node.right == None:
+                return node.left
+            return node
+        return dfs(root)
         
