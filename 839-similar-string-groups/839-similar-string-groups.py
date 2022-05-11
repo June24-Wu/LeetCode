@@ -23,8 +23,7 @@ class Solution:
                     continue
                 if check(strs[a],strs[b]):
                     unionList[find(b)] = find(a)
-        ret = sum(1 for i in range(n) if unionList[i] == i)
-        return ret
+        return sum(1 for i in range(len(unionList)) if unionList[i]==i)
         
         
         
