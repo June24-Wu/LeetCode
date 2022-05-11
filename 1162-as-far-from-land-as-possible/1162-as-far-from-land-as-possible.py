@@ -25,7 +25,5 @@ class Solution:
                 if j < n-1:
                     grid[i][j] = min(grid[i][j+1]+1,grid[i][j])
                 ans = max(ans,grid[i][j])             
-        print(grid)
-        print(ans)
         if ans == float("inf") or ans == 0:return -1
         return ans
