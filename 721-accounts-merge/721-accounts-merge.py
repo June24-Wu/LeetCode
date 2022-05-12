@@ -1,3 +1,4 @@
+
 class UnionFind:
     def __init__(self, n):
         self.parent = list(range(n))
@@ -9,6 +10,7 @@ class UnionFind:
         if self.parent[index] != index:
             self.parent[index] = self.find(self.parent[index])
         return self.parent[index]
+
 
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
