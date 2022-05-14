@@ -22,9 +22,7 @@ class Solution:
         uf = UF(n)
         for i , j in connections:
             uf.union(i,j)
-        print(uf.li)
-        print(uf.setCount)
-        # ans = set(uf.li)
+
         return uf.setCount - 1
         
         
