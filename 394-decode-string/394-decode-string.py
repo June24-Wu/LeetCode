@@ -20,9 +20,7 @@ class Solution:
                 stack.append(char)
             else:
                 stack.append(i)
-            print(stack)
         for i in stack:
             ans += i
-        print(ans)
         return ans
         
