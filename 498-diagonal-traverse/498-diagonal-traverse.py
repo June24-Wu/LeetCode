@@ -32,7 +32,6 @@ class Solution:
             else:
                 j += 1
             flag = not flag
-        print(ans)
         return ans
             
                 
