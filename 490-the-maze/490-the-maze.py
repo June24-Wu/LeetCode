@@ -9,7 +9,7 @@ class Solution:
                     return True
             for dirx, diry in directions:
                 tx, ty = curx, cury
-                while 0 <= tx + dirx < m and 0 <= ty + diry < n and maze[tx + dirx][ty + diry] == 0:
+                while 0 <= tx + dirx < m and 0 <= ty + diry < n and not maze[tx + dirx][ty + diry]:
                     tx, ty = tx + dirx, ty + diry
                 if (tx, ty) not in visit:
                     visit.add((tx, ty))
