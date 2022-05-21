@@ -1,16 +1,32 @@
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        wordset = set(wordList)
-        bfs = collections.deque()
-        bfs.append((beginWord, 1))
-        while bfs:
-            word, length = bfs.popleft()
-            if word == endWord:
-                return length
-            for i in range(len(word)):
-                for c in "abcdefghijklmnopqrstuvwxyz":
-                    newWord = word[:i] + c + word[i + 1:]
-                    if newWord in wordset and newWord != word:
-                        wordset.remove(newWord)
-                        bfs.append((newWord, length + 1))
-        return 0
+        if endWord not in wordList: return 0
+        visited = set() ; visited.add(beginWord)
+        wordList = set(wordList)
+        def change(char):
+            nonlocal wordList
+            char = list(char)
+            rt = []
+            for index,ch in enumerate(char):
+                for i in range(26):
+                    newCh = chr(ord("a") + i)
+                    char[index] = newCh
+                    if "".join(char) in wordList and "".join(char) not in visited:
+                        rt.append("".join(char))
+                        visited.add("".join(char))
+                    char[index] = ch
+            return rt
+        
+        queue = [beginWord]
+        step = 0
+        while queue != []:
+            length = len(queue)
+            if endWord in queue:
+                return step + 1
+            for i in range(length):
+                char = queue.pop(0)
+                nextWordList = change(char)
+                queue.extend(nextWordList)
+            step += 1
+            # print(queue , " " , step)
+        return 0 
