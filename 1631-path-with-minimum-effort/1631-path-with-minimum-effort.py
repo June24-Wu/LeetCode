@@ -1,28 +1,28 @@
 class Solution(object):
     def minimumEffortPath(self, heights):
-        row = len(heights)
-        col = len(heights[0])
-        difference_matrix = [[float("inf")]*col for _ in range(row)]
-        difference_matrix[0][0] = 0
-        visited = [[False]*col for _ in range(row)]
-        queue = [(0, 0, 0)]  # difference, x, y
-        while queue:
-            difference, x, y = heapq.heappop(queue)
-            visited[x][y] = True
-            for dx, dy in [[0, 1], [1, 0], [0, -1], [-1, 0]]:
-                adjacent_x = x + dx
-                adjacent_y = y + dy
-                if 0 <= adjacent_x < row and 0 <= adjacent_y < col and not visited[
-                        adjacent_x][adjacent_y]:
-                    current_difference = abs(
-                        heights[adjacent_x][adjacent_y]-heights[x][y])
-                    max_difference = max(
-                        current_difference, difference_matrix[x][y])
-                    if difference_matrix[adjacent_x][adjacent_y] > max_difference:
-                        difference_matrix[adjacent_x][adjacent_y] = max_difference
-                        heapq.heappush(
-                            queue, (max_difference, adjacent_x, adjacent_y))
-        return difference_matrix[-1][-1]
+        """
+        :type heights: List[List[int]]
+        :rtype: int
+        """
+        # Variations of Dijkstra's Algorithm
+        
+        m = len(heights) ; n = len(heights[0])
+        pq = [(0,0,0)]
+        dp = [[float("inf") for _ in range(n)] for _ in range(m)]
+        visited = set()
+        dp[0][0] = 0
+        while pq != []:
+            diff , row , col = heapq.heappop(pq)
+            visited.add((row,col))
+            for i , j in [(0,1),(0,-1),(1,0),(-1,0)]:
+                newRow = row + i ; newCol = col + j
+                if 0 <= newRow < m and 0 <= newCol < n and (newRow,newCol) not in visited:
+                    newDiff = abs(heights[newRow][newCol] - heights[row][col])
+                    maxDiff = max(newDiff,dp[row][col])
+                    if maxDiff < dp[newRow][newCol]:
+                        heapq.heappush(pq,(maxDiff,newRow,newCol))
+                        dp[newRow][newCol] = maxDiff
+        return dp[-1][-1]
                     
                     
                     
