@@ -1,5 +1,5 @@
-class Solution(object):
-    def minimumDeviation(self, nums):
+class Solution:
+    def minimumDeviation(self, nums: List[int]) -> int:
         """
         :type nums: List[int]
         :rtype: int
@@ -21,4 +21,4 @@ class Solution(object):
                 minVal = min(minVal,curr // 2)
             else:
                 break
-        return ans
+        return ans        
