@@ -4,7 +4,6 @@ class Solution:
         stack = []
         res , num , sign =  0 , 0 , 1
         for ch in s:
-            print(num, " ",ch)
             if ch.isdigit():
                 num = num * 10 + int(ch)
             elif ch == "+" or ch == "-":
