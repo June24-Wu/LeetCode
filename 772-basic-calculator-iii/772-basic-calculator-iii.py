@@ -1,33 +1,27 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        def helper(s: List) -> int:
-            stack = []
-            sign = '+'
-            num = 0
-
+        s = s.replace(" ", "")
+        def calculator(s:list):
+            num = 0 ; sign = "+" ; stack = []
+            
             while len(s) > 0:
-                c = s.popleft()
-                if c.isdigit():
-                    num = 10 * num + int(c)
-                # 遇到左括号开始递归计算 num
-                if c == '(':
-                    num = helper(s)
-
-                if (not c.isdigit() and c != ' ') or len(s) == 0:
-                    if sign == '+':
+                item = s.popleft()
+                if item.isdigit():
+                    num = num* 10 + int(item)
+                if item == "(":
+                    num = calculator(s)
+                if not item.isdigit() or len(s) == 0:
+                    if sign == "+":
                         stack.append(num)
-                    elif sign == '-':
+                    if sign == "-":
                         stack.append(-num)
-                    elif sign == '*':
-                        stack[-1] = stack[-1] * num
-                    elif sign == '/':
-                        # python 除法向 0 取整的写法
-                        stack[-1] = int(stack[-1] / float(num))       
+                    if sign == "*":
+                        stack.append(stack.pop() * num)
+                    if sign == "/":
+                        stack.append(int(stack.pop() / float(num)))
+                    sign = item
                     num = 0
-                    sign = c
-                # 遇到右括号返回递归结果
-                if c == ')': break
+                if item == ")": break
             return sum(stack)
-
-        return helper(collections.deque(s))
-
+        return calculator(collections.deque(s))
+                    
