@@ -3,8 +3,7 @@ class Solution:
         s = s.replace(" ", "")
         def calculator(s:list):
             num = 0 ; sign = "+" ; stack = []
-            
-            while len(s) > 0:
+            while s:
                 item = s.popleft()
                 if item.isdigit():
                     num = num* 10 + int(item)
