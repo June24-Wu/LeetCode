@@ -4,7 +4,7 @@ class Solution:
         def calculator(s:list):
             num = 0 ; sign = "+" ; stack = []
             while s:
-                item = s.popleft()
+                item = s.pop(0)
                 if item.isdigit():
                     num = num* 10 + int(item)
                 if item == "(":
@@ -22,5 +22,5 @@ class Solution:
                     num = 0
                 if item == ")": break
             return sum(stack)
-        return calculator(collections.deque(s))
+        return calculator(list(s))
                     
