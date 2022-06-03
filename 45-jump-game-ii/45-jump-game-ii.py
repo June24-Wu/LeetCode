@@ -4,8 +4,9 @@ class Solution:
         dp[0] = 0
         for index , num in enumerate(nums):
             for j in range(index+1,index + num + 1):
-                if j < len(nums):
-                    dp[j] = min(dp[j],dp[index] + 1)
+                if j >= len(nums):
+                    return dp[-1]
+                dp[j] = min(dp[j],dp[index] + 1)
             # print(dp)
         return dp[-1]
             
