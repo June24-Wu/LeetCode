@@ -13,12 +13,10 @@ class Solution:
             while heap and heap[0] < index - maxJump:
                 heap.pop(0)
             if heap == []:
-                print(index)
                 return False
             if heap[0] <= index - minJump:
                 heap.append(index)
                 dp[index] = True
-        # print(dp)
         return dp[-1]
         
         
