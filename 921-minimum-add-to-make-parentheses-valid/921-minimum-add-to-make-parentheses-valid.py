@@ -1,21 +1,14 @@
-class Solution(object):
-    def minAddToMakeValid(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        stack = []
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        num = 0 ; cnt = 0
         
         for i in s:
             if i == "(":
-                # if stack and stack[-1] == ")":
-                #     stack.pop()
-                # else:
-                    stack.append(i)
-            if i == ")":
-                if stack and stack[-1] == "(":
-                    stack.pop()
+                num += 1
+            else:
+                if num > 0:
+                    num -= 1
                 else:
-                    stack.append(i)
-        return len(stack)
+                    cnt += 1
+        return cnt + num
         
