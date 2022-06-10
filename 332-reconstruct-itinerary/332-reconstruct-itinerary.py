@@ -5,7 +5,6 @@ class Solution:
             if start not in graph:
                 graph[start] = []
             graph[start].append((end,index))
-        print(graph)
         for i in graph:
             graph[i].sort()
         visited = [False for _ in range(len(tickets))]
