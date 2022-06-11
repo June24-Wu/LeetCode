@@ -1,6 +1,5 @@
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
-        
         # two pass
         cntl = 0 ; cntr = 0 ; ans = 0
         for i in range(len(s)):
