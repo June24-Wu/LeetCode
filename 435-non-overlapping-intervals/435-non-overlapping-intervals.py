@@ -10,7 +10,5 @@ class Solution:
                 right = min(right,e)
             else:
                 left - s ; right = e
-        print(intervals)
         return cnt
-        # print(intervals)
         
