@@ -1,10 +1,10 @@
 class Solution:
     def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
-        people.sort(key=lambda x: (-x[0], x[1]))
+        people.sort(key = lambda x : ( - x[0], x[1]))
         
-        new = []
+        arr = []
         
-        for i in people:
-            new.insert(i[1],i)
+        for index , (height , idx) in enumerate(people):
+            arr.insert(idx,people[index])
+        return arr
         
-        return new
