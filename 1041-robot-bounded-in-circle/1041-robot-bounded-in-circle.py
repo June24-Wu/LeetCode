@@ -44,7 +44,6 @@ class Solution:
                     curr  = l(curr)
                 elif i == "R":
                     curr = r(curr)
-                print(curr)
             if curr == (0,0,"E"):
                 return True
         return False
