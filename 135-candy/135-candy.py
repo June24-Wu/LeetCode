@@ -1,16 +1,16 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
-        candy = [1for _ in range(len(ratings))]
-        
-        for i in range(1,len(ratings)):
-            if ratings[i] > ratings[i-1]:
-                candy[i] = candy[i-1] + 1
-                
-        for i in range(len(ratings)-2,-1,-1):
-            if ratings[i] > ratings[i+1]:
-                candy[i] = max(candy[i],candy[i+1]+1)
-        
-        print(candy)
-
-        return sum(candy)
-        
+        heap = []
+        for idx , rate in enumerate(ratings):
+            heap.append((rate,idx))
+        heapq.heapify(heap)
+        dp = [1 for _ in range(len(ratings))]
+        while heap:
+            rating , idx = heapq.heappop(heap)
+            candy = 1
+            if idx - 1 >= 0 and ratings[idx] > ratings[idx - 1]:
+                candy = max(candy,dp[idx - 1] + 1)
+            if idx + 1 < len(ratings) and ratings[idx] > ratings[idx + 1]:
+                candy = max(candy,dp[idx + 1] + 1)  
+            dp[idx] = candy
+        return sum(dp)
