@@ -1,9 +1,10 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        cur , ans = 0 , 0
+        # Kadane
+        ans = - float("inf") ; curr = 0
         for i in nums:
-            cur = max(0,cur + i)
-            ans = max(cur , ans)
+            curr = max(0,curr + i)
+            ans = max(ans,curr)
         if ans == 0:
             return max(nums)
         return ans
