@@ -10,8 +10,6 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if matrix[i][j] == "1":
-                    # print(i,j)
-                    # print(dp)
                     dp[i][j] = min(get(i-1,j),get(i,j-1),get(i-1,j-1)) + 1
                     ans = max(dp[i][j],ans)
         return ans**2
