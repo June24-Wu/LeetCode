@@ -18,5 +18,4 @@ class Solution:
                 left = mid
             else:
                 return True
-        print(left,right)
         return target == matrix[int(left//n)][int(left%n)] or target == matrix[int(right//n)][int(right%n)] 
