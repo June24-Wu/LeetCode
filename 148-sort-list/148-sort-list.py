@@ -3,35 +3,43 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+
+# 1 -> 2         3 -> 4
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head : return head
         
-        
-        def sort(node):
-            if node.next == None:return node
-            left = node ; right = node.next
-            while right != None and right.next != None:
-                left = left.next
-                right = right.next.next
-            right = left.next
-            left.next = None
-            node = sort(node)
-            right = sort(right)
-            # return node
-            return merge(node,right)
-            # return right
-        
-        
-        def merge(node1,node2):
-            dummy = ListNode(-1) ; p = dummy ; p1 = node1 ; p2 = node2
-            while p1 != None or p2 != None:
-                if p2 == None or (p1 != None and p2 != None and p1.val < p2.val):
-                    p.next = p1
+        def merge_sort(node):
+            if not node or not node.next:
+                return node
+            left = node
+            slow = left ; fast = left.next
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+            right = slow.next ; slow.next = None
+            list1 = merge_sort(left)
+            list2 = merge_sort(right)
+            
+            p1 = list1 ; p2 = list2
+            res = ListNode(-1)
+            curr = res
+            while p1 and p2:
+                if p1.val < p2.val:
+                    curr.next = p1
                     p1 = p1.next
                 else:
-                    p.next = p2
+                    curr.next = p2
                     p2 = p2.next
-                p = p.next
-            return dummy.next
-        return sort(head)
+                curr = curr.next
+            if p1 == None:
+                curr.next = p2
+            elif p2 == None:
+                curr.next = p1
+            return res.next
+        return merge_sort(head)
+        
+            
+                
+            
+        
