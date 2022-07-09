@@ -2,8 +2,6 @@ class Solution {
     public int pivotIndex(int[] nums) {
         int[] left = new int[nums.length] ;
         int[] right = new int[nums.length] ;
-        // Arrays.fill(left,0);
-        // Arrays.fill(right,-0);
         int res = 0;
         for (int i = 1 ; i < nums.length ; i ++){
             res = res + nums[i - 1];
