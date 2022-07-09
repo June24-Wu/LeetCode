@@ -10,14 +10,15 @@ class Node:
 
 class Solution:
     def inorderSuccessor(self, node: 'Node') -> 'Optional[Node]':
+        if node.right == None:
+            curr = node
+            while curr.parent and curr.parent.val < node.val:
+                curr = curr.parent
+            if curr.parent and curr.parent.val > node.val:
+                return curr.parent
+            return None
         curr = node.right
-        if curr:
-            while curr.left:
-                curr = curr.left
-            return curr
-        
-        while node.parent and node == node.parent.right:
-            node = node.parent
-        return node.parent
-            
+        while curr.left != None:
+            curr = curr.left
+        return curr
         
