@@ -1,21 +1,27 @@
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
-        if len(nums) == 1:return 0
-        def get(n):
-            if n == -1 or n == len(nums):
-                return  - float("inf")
-            return nums[n]
         
-        left , right = 0,len(nums) - 1
+        flag = None
+        if len(nums) == 1:
+            return 0
+        def get(index):
+            if 0 <= index < len(nums):
+                return nums[index]
+            return - float("inf")
         
-        while left <= right:
-            mid = (left + right)//2
-            if get(mid) > get(mid+1) and get(mid) > get(mid-1):
-                return mid
-            elif get(mid) < get(mid+1):
-                left = mid + 1
-            else:
-                right = mid - 1 
-        return mid
-                
+        def dfs(left,right):
+            nonlocal flag
+            if flag != None:
+                return
+            if left > right or left < 0 or right >= len(nums):
+                return
+            mid = (left + right) // 2
+            if get(mid - 1) < get(mid) > get(mid + 1):
+                flag = mid
+                return
+            dfs(left,mid - 1)
+            dfs(mid + 1,right)
+            return
+        dfs(0,len(nums) - 1)
+        return flag
         
