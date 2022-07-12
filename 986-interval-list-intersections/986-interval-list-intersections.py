@@ -1,20 +1,22 @@
 class Solution:
     def intervalIntersection(self, l1: List[List[int]], l2: List[List[int]]) -> List[List[int]]:
-        arr = []
-        for s , e in l1:
-            arr.append((s,1))
-            arr.append((e,-1))
-        for s , e in l2:
-            arr.append((s,1))
-            arr.append((e,-1)) 
-        arr.sort(key = lambda x : (x[0], - x[1]))
-        flag = False ; cnt = 0 ; left = 0 ; ans = []
-        for idx , val in arr:
-            cnt += val
+        array = []
+        for start , end in l1:
+            array.append((start,1))
+            array.append((end,-1))
+        for start , end in l2:
+            array.append((start,1))
+            array.append((end,-1))
+        array.sort(key = lambda x : (x[0], - x[1]))
+        flag = False
+        cnt = 0
+        ans = []
+        for start , num in array:
+            cnt += num
             if flag == False and cnt == 2:
-                left = idx
+                left = start
                 flag = True
-            if flag and cnt < 2:
-                ans.append([left,idx])
+            if flag == True and cnt < 2:
+                ans.append([left, start])
                 flag = False
         return ans
