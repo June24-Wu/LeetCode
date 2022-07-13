@@ -1,53 +1,25 @@
 class Solution:
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        # build graph
-        graph = [[] for _ in range(numCourses)]
-        indegree = [0 for i in range(numCourses)]
-        for i in prerequisites:
-            indegree[i[0]] += 1
-            graph[i[1]].append(i[0])
-        # BFS
-        # initialize queue
-        queue = [] ; res = []
-        for i in range(len(indegree)):
+    def findOrder(self, n: int, prerequisites: List[List[int]]) -> List[int]:
+        indegree = [0 for _ in range(n)]
+        graph = collections.defaultdict(list)
+        for i , j in prerequisites:
+            indegree[i] += 1
+            graph[j].append(i)
+        queue = []
+        for i in range(n):
             if indegree[i] == 0:
                 queue.append(i)
-                res.append(i)
-        cnt = 0 
-        while queue != []:
-            cur = queue.pop(0)
-            cnt += 1
-            for i in graph[cur]: # i means child
+        ans = []
+        while queue:
+            node = queue.pop(0)
+            ans.append(node)
+            for i in graph[node]:
                 indegree[i] -= 1
                 if indegree[i] == 0:
                     queue.append(i)
-                    res.append(i)
-        if cnt == len(graph):
-            return res
-        return []
-      
+        if max(indegree) > 0 :
+            return []
+        return ans
+        
             
-        # DFS
-        # visted = [False for _ in range(len(graph))]
-        # path = [False for _ in range(len(graph))]
-        # hasCycle = False
-        # res = []
-        # def dfs(num):
-        #     nonlocal visted ; nonlocal path ; nonlocal hasCycle ; nonlocal res
-        #     if path[num] == True:
-        #         hasCycle = True
-        #         return
-        #     if hasCycle or visted[num]:
-        #         return
-        #     visted[num] = True ; path[num] = True
-        #     for i in graph[num]:
-        #         dfs(i)
-        #     res.append(num)
-        #     path[num] = False
-        #     return
-        # for i in range(len(graph)):
-        #     dfs(i)
-        # if hasCycle:return []
-        # return res[::-1]
-
         
