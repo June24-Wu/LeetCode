@@ -2,7 +2,6 @@ class Solution:
     def longestPalindrome(self, s: str) -> int:
         array = [(i,s.count(i)) for i in set(list(s))]
         array.sort(key = lambda x : - x[1])
-        print(array)
         maxodd = None
         ans = 0
         for char , cnt in array:
