@@ -1,13 +1,10 @@
 class Solution:
-    def stoneGame(self, nums: List[int]) -> bool:
-        # dp 
-        length = len(nums)
-        dp = [0 for _ in range(length)]
-        for i in range(length-1,-1,-1):
-            temp = dp.copy()
-            dp[i] = nums[i]
-            for j in range(i+1,length):
-                dp[j] = max(nums[j]-dp[j-1],nums[i] - temp[j])
-            # print(dp)
-        return dp[-1] > 0 
-        
+    def stoneGame(self, piles: List[int]) -> bool:
+        n = len(piles)
+        dp = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
+        for i in range(n):
+            dp[i][i] = piles[i]
+        for i in range(n-1,-1,-1):
+            for j in range(i+1,n):
+                dp[i][j] = max(piles[i] - dp[i+1][j] , piles[j] - dp[i][j-1])
+        return dp[0][n-1] > 0
