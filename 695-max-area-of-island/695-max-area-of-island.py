@@ -1,17 +1,21 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        ans = 0 ; m = len(grid) ; n = len(grid[0])
-        def dfs(row,col):
-            nonlocal grid
-            nonlocal ans
-            if row < 0 or row >= m or col < 0 or col >= n or grid[row][col] == 0:
+        
+        m = len(grid) ; n = len(grid[0])
+        def dfs(r,c):
+            if grid[r][c] == 0:
                 return 0
-            grid[row][col] = 0
-            area = dfs(row+1,col) + dfs(row,col+1) + dfs(row-1,col) + dfs(row,col-1) + 1
-            ans = max(ans,area)
+            area = 1
+            grid[r][c] = 0
+            for i , j in [(1,0),(-1,0),(0,1),(0,-1)]:
+                row = r + i  ; col = c + j
+                if 0 <= row < m and 0 <= col < n and grid[row][col] != 0:
+                    area += dfs(row,col)
             return area
+        ans = 0
         for i in range(m):
             for j in range(n):
-                dfs(i,j)
+                if grid[i][j] == 1:
+                    ans = max(ans,dfs(i,j))
         return ans
-        
+                
