@@ -21,8 +21,8 @@ class Solution:
             return res
         memo = {}
         ans = dfs(0)
-        print(memo)
-        print(ans)
+        # print(memo)
+        # print(ans)
         if ans < 0:
             return "Bob"
         if ans > 0:
