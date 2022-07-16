@@ -15,6 +15,5 @@ class Solution:
                 res = max(res,sum(piles[index:index+i]) - dfs(index+i,max(m,i)))
             memo[(index,m)] = res
             return res
-        ans = (dfs(0,1) + sum(piles)) // 2
-        # print(memo)
-        return ans
+
+        return (dfs(0,1) + sum(piles)) // 2
