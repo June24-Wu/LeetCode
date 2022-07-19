@@ -1,38 +1,31 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        flag = False
         m = len(board)
         n = len(board[0])
-        flag = False
-        visited = [[False for _ in range(n)] for i in range(m)]
-        def tracking(row,column,start_index):
-            # print(board[row][column])
-            nonlocal visited
-            nonlocal flag
-            if flag == True:return
-            if visited[row][column] == True:
+        
+        def backtracking(row,col,index):
+            nonlocal m ; nonlocal n ; nonlocal flag
+            if flag == True:
                 return
-            if board[row][column] != word[start_index]:
-                return
-            if start_index == len(word)-1 and board[row][column] == word[start_index]:
+            if index == len(word):
                 flag = True
                 return
-            else:
-                visited[row][column] = True
-                if row + 1 < m:
-                    tracking(row+1,column,start_index+1)
-                if row - 1 >= 0:
-                    tracking(row-1,column,start_index+1)
-                if column + 1 < n:
-                    tracking(row,column+1,start_index+1)
-                if column - 1 >= 0:
-                    tracking(row,column-1,start_index+1)
-                visited[row][column] = False
+            if row < 0 or row >= m or col < 0 or col >= n or board[row][col] != word[index]:
+                return
+            origin = board[row][col]
+            board[row][col] = "#"
+            for (i,j) in [(1,0),(-1,0),(0,1),(0,-1)]:
+                r , c = row + i , col + j
+                # if 0 <= r < m and 0 <= c < n:
+                backtracking(r,c,index+1)
+            board[row][col] = origin
+            return
         for i in range(m):
             for j in range(n):
-                if flag == True:
-                    return True
-                tracking(i,j,0)
+                if board[i][j] == word[0]:
+                    backtracking(i,j,0)
         return flag
                 
-        
+            
         
