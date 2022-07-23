@@ -23,7 +23,7 @@ Note that "i" comes before "love" due to a lower alphabetical order.
 
 <ul>
 	<li><code>1 &lt;= words.length &lt;= 500</code></li>
-	<li><code>1 &lt;= words[i] &lt;= 10</code></li>
+	<li><code>1 &lt;= words[i].length &lt;= 10</code></li>
 	<li><code>words[i]</code> consists of lowercase English letters.</li>
 	<li><code>k</code> is in the range <code>[1, The number of <strong>unique</strong> words[i]]</code></li>
 </ul>
