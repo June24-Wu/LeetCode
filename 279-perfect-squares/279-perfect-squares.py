@@ -11,6 +11,4 @@ class Solution:
             for j in range(item,n+1):
                 dp[j] = min(dp[j],dp[j-item]+1)
 
-        return dp[-1]
-        
-        
+        return dp[-1]        
