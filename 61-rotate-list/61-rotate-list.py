@@ -20,5 +20,3 @@ class Solution:
         newHead = p.next
         p.next = None
         return newHead
-        
-        
