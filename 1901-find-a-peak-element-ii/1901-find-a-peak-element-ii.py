@@ -18,4 +18,4 @@ class Solution:
                 up = mid + 1
             else:
                 down = mid - 1
-        return ([mid,maxVal_index])        
+        return ([mid,maxVal_index])         
