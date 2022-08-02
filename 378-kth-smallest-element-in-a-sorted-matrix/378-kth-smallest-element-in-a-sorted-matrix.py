@@ -16,7 +16,6 @@ class Solution:
         left, right = matrix[0][0], matrix[-1][-1]
         while left < right:
             mid = (left + right) // 2
-            print(mid)
             if check(mid):
                 right = mid
             else:
