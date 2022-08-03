@@ -7,24 +7,22 @@
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         
-        ans = []
         def dfs(node):
-            nonlocal path
-            if node == None:
-                return
-            if node.left == None and node.right == None:
-                path.append(node.val)
+            nonlocal ans
+            if not node:
                 return None
-            node.left = dfs(node.left)
+            if not node.left and not node.right:
+                ans.append(node.val)
+                return None
             node.right = dfs(node.right)
+            node.left = dfs(node.left)
             return node
         
-        while root != None:
-            path = []
+        res = []
+        
+        while root:
+            ans = []
             root = dfs(root)
-            ans.append(path)
-            # print(path)
-            # print(ans)
-        return ans
-            
+            res.append(ans)
+        return res
         
