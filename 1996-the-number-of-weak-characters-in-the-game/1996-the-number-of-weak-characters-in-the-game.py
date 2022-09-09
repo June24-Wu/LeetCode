@@ -7,7 +7,7 @@ class Solution:
         for right in range(len(mat)):
             maxdefense = max(maxdefense,mat[right][1])
             if mat[left][0] == mat[right][0]:
-                left = right - 1
+                left = right
             if mat[right][1] < maxdefense:
                 ans += 1
         return ans
