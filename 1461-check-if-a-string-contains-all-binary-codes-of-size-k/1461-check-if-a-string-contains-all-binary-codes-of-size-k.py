@@ -3,6 +3,6 @@ class Solution:
         table = set()
         for i in range(len(s) - k + 1):
             table.add(s[i:i+k])
-        print(table)
+        # print(table)
         return len(table) == 2 ** k
         
