@@ -6,7 +6,7 @@ class Solution:
         keys = list(table.keys())
         keys.sort()
         ans = []
-        print(table)
+        # print(table)
         for i in keys:
             if table[i] == 0:
                 continue
