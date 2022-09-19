@@ -11,7 +11,7 @@ class Solution:
                 table[file[1][:-1]].append(name)
         ans = []
         for i in table:
-            if len(table[i])  > 1   :
+            if len(table[i])  > 1:
                 ans.append(table[i])
         return ans
         
