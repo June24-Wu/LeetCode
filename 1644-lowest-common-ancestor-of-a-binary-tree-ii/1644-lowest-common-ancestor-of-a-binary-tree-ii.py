@@ -23,7 +23,6 @@ class Solution:
                 return left
             return node
         ans = dfs(root)
-        print(table)
         if p.val not in table or q.val not in table:
             return None
         return ans
