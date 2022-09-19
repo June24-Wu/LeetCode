@@ -8,15 +8,15 @@
  * }
  */
 class Solution {
-    HashSet<Integer> table = new HashSet<>();
+    HashSet<TreeNode> table = new HashSet<>();
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
         for (TreeNode node : nodes){
-            table.add(node.val);
+            table.add(node);
         }
         return find(root);
     }
     public TreeNode find(TreeNode node){
-        if (node == null || table.contains(node.val)){
+        if (node == null || table.contains(node)){
             return node;
         }
         TreeNode left = find(node.left);
