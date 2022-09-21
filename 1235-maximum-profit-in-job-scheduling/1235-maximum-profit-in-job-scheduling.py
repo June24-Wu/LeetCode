@@ -4,7 +4,7 @@ class Solution:
         jobs = list(zip(startTime,endTime,profit))
         jobs.sort()
         startTime.sort()
-        @cache
+        @lru_cache
         def dfs(index):
             if index == n:
                 return 0
