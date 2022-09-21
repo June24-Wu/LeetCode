@@ -4,7 +4,7 @@ class Solution:
         n = len(events)
         events.sort()
         startTime.sort()
-        print(events)
+        # print(events)
         @lru_cache
         def dfs(index,cnt):
             if index == n or cnt == k:
