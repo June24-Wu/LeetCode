@@ -23,7 +23,7 @@ class Solution:
             if row + 1 in table and col * 2 in table[row+1]:
                 dfs(row+1,col*2,sumVal)
             if row + 1 not in table or (col * 2 not in table[row+1] and col * 2 - 1 not in table[row+1]):
-                print(row,col,sumVal)
+                # print(row,col,sumVal)
                 ans += sumVal
             return
         dfs(1,1,0)
