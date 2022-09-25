@@ -22,11 +22,9 @@ class Solution:
             if nums[idx] <= nums[idx+1]:
                 continue
             if cnt == 1:
-                print(idx)
                 back = False
                 continue
             nums[idx] = nums[idx+1]
             cnt += 1
-        print(front,back)
         return front or back
         
