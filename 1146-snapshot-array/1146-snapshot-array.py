@@ -19,7 +19,6 @@ class SnapshotArray:
         snap_id = bisect.bisect_left(timelist,snap_id) - 1
         if snap_id == -1:
             return 0
-        print(index,snap_id)
         return self.array[index][timelist[snap_id]]
 
 
