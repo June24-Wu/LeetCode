@@ -30,7 +30,7 @@ class Solution:
                 else:
                     for k in decode(users):
                         ans[k] += 1
-            print(ans,status)
+            # print(ans,status)
         return ans
 
         
