@@ -1,59 +1,58 @@
 class Node:
-    def __init__(self,key,val,pre = None,next = None):
-        self.key = key
+    def __init__(self,val,key=None):
         self.val = val
-        self.pre = pre
-        self.next = next
-class LRUCache:
+        self.pre = None
+        self.next = None
+        self.key=key
 
+class LRUCache:
     def __init__(self, capacity: int):
+        self.m = {}
         self.capacity = capacity
-        self.head = Node(0,0)
-        self.tail = Node(0,0)
-        self.val2node = {}
+        self.head = Node(-1)
+        self.tail = Node(-1)
         self.head.next = self.tail
         self.tail.pre = self.head
         
     def get(self, key: int) -> int:
-        # print("get",key,self.val2node)
-        if self.val2node.get(key):
-            node = self.val2node.get(key)
-            key, value = node.key, node.val
-            self.__del(node)
-            self.__add_head(key,value)
-            return self.val2node.get(key).val
-        return -1
+        if key not in self.m:
+            return -1
+        node = self.m[key]
+        self._delete_node(node)
+        self._add_head(node)
+        return node.val
 
     def put(self, key: int, value: int) -> None:
-        if key in self.val2node:
-            self.__del(self.val2node[key])
-        self.__add_head(key,value)
-        if len(self.val2node) > self.capacity:
-            self.__del_last()
-        # print("put",key,value,self.val2node)
-
-    def __add_head(self,key,value):
-        node = Node(key,value)
-        node_next = self.head.next
-        self.head.next = node
-        node.pre = self.head
-        node.next = node_next
-        node_next.pre = node
-        self.val2node[key] = node
-    
-    def __del(self,node):
-        key = node.key
-        del self.val2node[key]
-        pre_node = node.pre
-        next_node = node.next
-        pre_node.next = next_node
-        next_node.pre = pre_node
-    
-    def __del_last(self):
-        self.__del(self.tail.pre)
-
+        if key in self.m:
+            node = self.m[key]
+            node.val = value
+            self._delete_node(node)
+            self._add_head(node)
+        else:
+            node = Node(value,key=key)
+            self._add_head(node)
+            if self.capacity < 0:
+                self._delete_tail()
         
+    def _add_head(self,node):
+        self.m[node.key] = node
+        next = self.head.next
+        self.head.next = node
+        node.next = next
+        next.pre = node
+        node.pre = self.head
+        self.capacity -= 1
+    
+    def _delete_node(self,node):
+        del self.m[node.key]
+        pre = node.pre
+        next = node.next
+        pre.next = next
+        next.pre = pre
+        self.capacity += 1
 
+    def _delete_tail(self):
+        return self._delete_node(self.tail.pre)
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
