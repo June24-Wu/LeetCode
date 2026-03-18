@@ -20,6 +20,8 @@ class Solution:
                 grid[i][j] = cal(i,j)
                 if grid[i][j] <= k:
                     ans += 1
+                else:
+                    break
         return ans
 
 
