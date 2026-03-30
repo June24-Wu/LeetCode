@@ -8,4 +8,3 @@ class Solution:
             if i not in nums:
                 return i
         # return ""
-        
