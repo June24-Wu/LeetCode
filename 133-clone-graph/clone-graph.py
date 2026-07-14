@@ -9,20 +9,21 @@ class Node:
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
         vis = {}
         def dfs(node):
-            nonlocal vis
-            if node.val in vis:
-                return vis[node.val]
-            new_node = Node(node.val)
-            vis[node.val] = new_node
-            for neighbor in node.neighbors:
-                new_neighbor = dfs(neighbor)
-                # new_neighbor.neighbors.append(new_node)
-                new_node.neighbors.append(new_neighbor)
-            return new_node
+            if node in vis:
+                return vis.get(node)
+            if not node:
+                return None
+            clone_node = Node(node.val)
+            vis[node] = clone_node
+            for adj in node.neighbors:
+                # print(node.val,adj.val)
+                clone_node.neighbors.append(dfs(adj))
+            return clone_node
+
         return dfs(node)
+            
+
 
         
