@@ -12,4 +12,3 @@ class Solution:
         else:
             i = 0
         return i >= len(nums) - 1
-        
